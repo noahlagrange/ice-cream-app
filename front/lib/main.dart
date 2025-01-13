@@ -242,7 +242,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> fetchIceCreams() async {
     try {
-      final response = await http.get(Uri.parse('http://172.31.35.70:5000/items')); 
+      final response = await http.get(Uri.parse(/*'http://172.31.35.70:5000/items'*  change the address by your's*/ )); 
 
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
