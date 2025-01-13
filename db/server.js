@@ -4,16 +4,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-// Initialize app
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(bodyParser.json());
 
 app.use(cors());
 
-// MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))
@@ -25,7 +22,6 @@ const CoordinateSchema = new mongoose.Schema({
 });
 
 const Coordinate = mongoose.model('Coordinate', CoordinateSchema);
-// Define a schema and model
 const ItemSchema = new mongoose.Schema({
   path: { type: String, required: true },
   name: { type: String, required: true },
@@ -35,12 +31,10 @@ const ItemSchema = new mongoose.Schema({
 
 const Item = mongoose.model('Item', ItemSchema);
 
-// Routes
 app.get('/', (req, res) => {
   res.send('Welcome to the Node.js Server with MongoDB!');
 });
 
-// Create an item
 app.post('/items', async (req, res) => {
   try {
     const newItem = new Item(req.body);
@@ -55,7 +49,6 @@ app.get('/test', (req, res) => {
     res.send('Hello World!');
     });
 
-// Get all items
 app.get('/items', async (req, res) => {
   try {
     console.log("GET");
@@ -66,7 +59,6 @@ app.get('/items', async (req, res) => {
   }
 });
 
-// Update an item
 app.put('/items/:id', async (req, res) => {
   try {
     const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -76,7 +68,6 @@ app.put('/items/:id', async (req, res) => {
   }
 });
 
-// Delete an item
 app.delete('/items/:id', async (req, res) => {
   try {
     await Item.findByIdAndDelete(req.params.id);
@@ -97,7 +88,6 @@ app.post('/coordinates', async (req, res) => {
   }
 });
 
-// Get all coordinates
 app.get('/coordinates', async (req, res) => {
   try {
     const coordinates = await Coordinate.find();
@@ -107,7 +97,6 @@ app.get('/coordinates', async (req, res) => {
   }
 });
 
-// Get a single coordinate by ID
 app.get('/coordinates/:id', async (req, res) => {
   try {
     const coordinate = await Coordinate.findById(req.params.id);
@@ -120,7 +109,6 @@ app.get('/coordinates/:id', async (req, res) => {
   }
 });
 
-// Update a coordinate
 app.put('/coordinates/:id', async (req, res) => {
   try {
     const updatedCoordinate = await Coordinate.findByIdAndUpdate(
@@ -137,7 +125,6 @@ app.put('/coordinates/:id', async (req, res) => {
   }
 });
 
-// Delete a coordinate
 app.delete('/coordinates/:id', async (req, res) => {
   try {
     const deletedCoordinate = await Coordinate.findByIdAndDelete(req.params.id);
@@ -151,7 +138,6 @@ app.delete('/coordinates/:id', async (req, res) => {
 });
 
 
-// Start the server
 app.listen(PORT, () => {
   console.log('Server is running on port 5000');
 });
