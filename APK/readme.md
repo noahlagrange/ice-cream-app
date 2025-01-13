@@ -1,0 +1,3 @@
+Il est important de noter que toutes les informations ne s'afficheront pas correctement dans l'application, car l'URL de la base de données n'a pas encore été modifiée. Comme mentionné dans le fichier README du dossier frontend, il est nécessaire de remplacer l'URL par celle qui correspond à votre instance de la base de données locale ou distante afin que l'application puisse récupérer les données correctement.
+
+Si cette modification n'est pas effectuée, l'application ne pourra pas établir la connexion avec la base de données et, par conséquent, les informations ne s'afficheront pas comme prévu. Assurez-vous donc de suivre les instructions dans le README pour configurer correctement l'URL et garantir que l'application fonctionne comme attendu.
